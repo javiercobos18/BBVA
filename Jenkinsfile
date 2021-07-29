@@ -39,5 +39,14 @@ pipeline {
 				''')
             }
         }
+		stage('Deploy') {
+				agent { node{ label 'master' } }
+		
+            steps {
+                sh ('''
+					docker build -t page .
+				''')
+            }
+        }
     }
 }

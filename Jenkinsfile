@@ -13,6 +13,7 @@ pipeline {
             }
         }
 		stage('Test') { 
+			agent {
 				docker {
 					image 'maven:3.8.1-adoptopenjdk-11' 
 					args '-v /root/.m2:/root/.m2' 
@@ -23,6 +24,7 @@ pipeline {
             }
         }
 		stage('Sonar') {
+			agent {	
 				docker {
 					image 'maven:3.8.1-adoptopenjdk-11' 
 					args '-v /root/.m2:/root/.m2' 
@@ -37,10 +39,5 @@ pipeline {
 				''')
             }
         }
-		/*stage('Deploy') { 
-            steps {
-                sh '' 
-            }
-        }*/
     }
 }
